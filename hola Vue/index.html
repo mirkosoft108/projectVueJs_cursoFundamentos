@@ -10,17 +10,20 @@
 <body>
     
     <script src="https://unpkg.com/vue@next"></script>
-    <div id="app"></div>
+    <div id="app">
+        
+    </div>
     <script >
 
        const vm = Vue.createApp(
         {
             data(){
                 return{
-                    text: 'Hola Vue'
+                    imagen: "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/41e3YGKg-3L.jpg"
                 };
+                
             },
-            template: `<div v-once v-text="text"></div>`
+            template: `<img v-bind:src="imagen" v-bind:alt="imagen"> `,
         }
        ).mount('#app');
        console.log(vm);
