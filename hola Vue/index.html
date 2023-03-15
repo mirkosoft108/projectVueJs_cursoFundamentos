@@ -9,32 +9,32 @@
 </head>
 <body>
     
-    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
     <div id="app">
         
     </div>
-    <script >
-
-       const vm = Vue.createApp(
-        {
-            data(){
-                return{
-                    counter: 0,
+    <script>
+        const vm = Vue.createApp({
+            data() {
+                return {
+                    text: "Hola Vue"
                 };
-                
             },
-            //añadimos un methods increment console log
-            methods:{
-                increment(){
-                    console.log('click!');
-                    this.counter++;
-                    console.log(this.counter);
+            methods: {
+                input(event) {
+                    this.text = event.target.value;
                 }
             },
-            template: `<button v-on:click='increment'>{{counter}}</button>`,
-        }
-       ).mount('#app');
-       console.log(vm);
+            template: `
+                <p>{{ text }}</p>
+                <input
+                    type="text"
+                    v-on:input="input"
+                    v-bind:value="text"
+                />
+            `
+        }).mount("#app");
     </script>
 
 </body>
