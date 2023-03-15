@@ -10,7 +10,21 @@
 <body>
     
     <script src="https://unpkg.com/vue@next"></script>
-    
+    <div id="app">{{ text }}</div>
+    <script >
+
+       const vm = Vue.createApp(
+        {
+            data(){
+                return{
+                    text: 'Hola Vue'
+                };
+            }
+        }
+       ).mount('#app');
+       console.log(vm);
+    </script>
+
 </body>
 
 
