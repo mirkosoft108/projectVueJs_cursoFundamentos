@@ -19,11 +19,19 @@
         {
             data(){
                 return{
-                    imagen: "https://m.media-amazon.com/images/W/IMAGERENDERING_521856-T1/images/I/41e3YGKg-3L.jpg"
+                    counter: 0,
                 };
                 
             },
-            template: `<img v-bind:src="imagen" v-bind:alt="imagen"> `,
+            //añadimos un methods increment console log
+            methods:{
+                increment(){
+                    console.log('click!');
+                    this.counter++;
+                    console.log(this.counter);
+                }
+            },
+            template: `<button v-on:click='increment'>{{counter}}</button>`,
         }
        ).mount('#app');
        console.log(vm);
