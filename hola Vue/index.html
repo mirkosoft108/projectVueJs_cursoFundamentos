@@ -15,7 +15,7 @@
         
     </div>
     <script>
-        const vm = Vue.createApp({
+        const app = Vue.createApp({
             data() {
                 return {
                     text: "Puerta cerrada",
@@ -60,10 +60,11 @@
                 <div v-if="open">
                     <p>hola,{{username}}</p> 
                     <div class='list'>
-                        <div v-for='item in posts' class='item'>
-                            <h4>{{item.title}}</h4>
-                            <p> {{item.description}}</p>
-                        </div>
+                        <item 
+                            v-for="(item,i ) in posts" 
+                            :key="i" 
+                            :post="item"
+                        />
 
                     </div>
                 
@@ -78,7 +79,25 @@
                 </button>
             </div>
             `
-        }).mount("#app");
+        })
+        
+        app.component("item",{
+            props: ['post'],
+            template: `
+                <div class='item'>
+                    <h4>{{post.title}}</h4>
+                    <p> {{post.description}}</p>
+                </div>
+            `
+
+            //queremos reutilizar el div de item de la lista
+        })
+
+        const vm = app.mount('#app');
+
+        //tengo la app dentro de su variable y puedo agregarle elementos
+
+
     </script>
     <style>
         html, body {
