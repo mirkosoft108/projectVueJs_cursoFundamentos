@@ -16,32 +16,30 @@
     </div>
     <script>
         const app = Vue.createApp({
-            template: `
-                <div> 
-                    <v-header>
-                        <template #header>
-                            <h1>Titulo</h1>
-                        </template>
-                        <template #content>
-                            <p>Contenido</p>
-                        </template>    
-                    </v-header>
+            //ul li item1
+            //data 
+            data(){
+                return {
+                    items: ['item1', 'item2', 'item3']
+                }
+            },
+            template : `
+                <ul>
+                    <v-item v-for='item in items' v-bind:text='item'></v-item>
                     
-                </div>
+                </ul>
             `,
+
         });
 
-        app.component("v-header", {
+        app.component("v-item", {
+            props : {
+                text: String
+            },
             template: `
-                <header>
-                    <slot name="header"></slot>
-                    
-                </header>
-                <div>
-                    <slot name="content"></slot>
-                </div>
-            `,
-        });
+                <li> {{ text }} </li>
+            `
+        })
 
         const vm = app.mount('#app');
     </script>
