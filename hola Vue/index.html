@@ -16,35 +16,35 @@
     </div>
     <script>
         const app = Vue.createApp({
-            data()  {
+            data() {
                 return {
                     text: 'Hola Vue'
                 }
             },
-            methods: {
-                input(value) {
-                    this.text = value;
+            provide() {
+                return {
+                    otroTexto: 'hi universe'
                 }
             },
             template: `
-                <div>
-                    <h1>{{ text }}</h1>
-                    <v-input v-bind:value="text" v-on:inputUpdate="input" />
-                </div>
+                <h1>{{ text }}</h1>
+                <otro />
+            `
+          
+        });
+        
+        app.component ("otro", {
+            template:   
+            `
+                <tercer />
             `
         });
 
-        app.component('v-input', {
-            prop :{
-                value: String
-            },
-            methods: {
-                input(event) {
-                    this.$emit('inputUpdate', event.target.value);
-                }
-            },
-            template: `
-                <input type="text" v-bind:value="value" v-on:input="input" />
+        app.component ("tercer", {
+            inject: ['otroTexto'],
+            template:   
+            `
+                <h1>{{otroTexto}}</h1>
             `
         });
 
