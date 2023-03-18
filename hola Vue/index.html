@@ -16,39 +16,25 @@
     </div>
     <script>
         const app = Vue.createApp({
-            data() {
+            data () {
                 return {
                     text: 'Hola Vue'
                 }
             },
-            provide() {
-                return {
-                    otroTexto: 'hi universe'
-                }
-            },
             template: `
-                <h1>{{ text }}</h1>
-                <otro />
-            `
-          
-        });
-        
-        app.component ("otro", {
-            template:   
-            `
-                <tercer />
+                <v-button :label="text"> </v-button>
             `
         });
 
-        app.component ("tercer", {
-            inject: ['otroTexto'],
-            template:   
-            `
-                <h1>{{otroTexto}}</h1>
+        app.component('v-button', {
+            props: ['label'],
+            template: `
+                <button> {{ label }} </button>
             `
         });
 
         const vm = app.mount('#app');
+      git
     </script>
     
 </body>
